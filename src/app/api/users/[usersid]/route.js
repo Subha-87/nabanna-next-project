@@ -19,13 +19,13 @@ export async function GET(request, { params }) {
 
 // POST UPDATED DATA INTO DATABASE & UPDATE THE RESULT //
 export async function PUT(request, { params }) {
-    //const { userid } = await params
-    // id is not getting //
-    //const editId = { _id: userid }
-    //const {editId} = await payload
-    console.log(editId)
+    const { usersid } = await params
+   
+    const editId = { _id: usersid }
+   
+    //console.log(usersid )
     const payload = await request.json()
-    console.log(payload)
+    //console.log(payload)
     await mongoose.connect(mongoURI)
     try {
         const result = await userModel.findOneAndUpdate(editId,payload)

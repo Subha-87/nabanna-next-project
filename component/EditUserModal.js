@@ -37,9 +37,9 @@ export default function EditUserModal({ selectedData, isOpen, isClose, sendEditi
     const handleSubmit = async (values, action) => {
         console.log(values)
         // PUT REQUEST FOR UPDATED DATA //
-        const{_id} = values
+        const{_id,name,rank,email,age} = values
         try {
-            const response = await axios.put(`http://localhost:5005/api/users/${_id}`,values)
+            const response = await axios.put(`http://localhost:5005/api/users/${_id}`,{name,rank,email,age})
             console.log(response)
         } catch (error) {
             console.error(error)
