@@ -16,14 +16,22 @@ import { userModel } from "@/lib/model/user"
 export async function GET() {
 
     //await DBconnect()
-
-    await mongoose.connect(mongoURI)
-    const data = await userModel.find()
+    let data = []
+    let success = true
+    try {
+        await mongoose.connect(mongoURI)
+        data = await userModel.find()
+        return NextResponse.json({
+            result: data,
+            success:success
+        })
+        
+    } catch (error) {
+        data = {result:"error"}
+        success= false
+    }
     //console.log(data)
 
-    return NextResponse.json({
-        data: data
-    })
 
 
 }

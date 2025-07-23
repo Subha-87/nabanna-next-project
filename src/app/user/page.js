@@ -4,8 +4,8 @@ import axios from "axios";
 import EditBtn from "../../../component/EditBtn";
 import DeleteBtn from "../../../component/DeleteBtn";
 export default async function Page() {
-    const data = await fetchData()
-    //console.log(data)
+    const getData = await fetchData()
+    //console.log(getData)
 
     return (
         <Container fluid>
@@ -38,7 +38,7 @@ export default async function Page() {
                     <tbody>
 
                         {
-                            data.map((post, i) => {
+                            getData.map((post, i) => {
                                 return (
                                     <tr key={i}>
                                         <td>{i + 1}</td>
@@ -73,8 +73,15 @@ export default async function Page() {
 async function fetchData() {
 
     try {
-        const response = await axios.get("http://localhost:5005/api/users", { cache: "no-cache" })
-        return response.data.data
+        //const response = await axios.get("http://localhost:5005/api/users", { cache: "no-cache" })
+        //return response.data.data
+        let data = await fetch("http://localhost:5005/api/users")
+        data = await data.json()
+        if(data.success){
+            return data.result
+        }else{
+            return  {success : false}
+        }
     } catch (error) {
         console.error('Axios error:', error.response?.status, error.message);
     }
