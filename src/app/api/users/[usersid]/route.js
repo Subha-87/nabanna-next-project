@@ -3,6 +3,7 @@ import { userModel } from "@/lib/model/user";
 import { mongoURI } from "@/lib/db";
 import mongoose from "mongoose";
 
+
 //GET SINGLE DATA FOR UPDATE & POPULATE OVER UI//
 
 export async function GET(request, { params }) {
